@@ -5,11 +5,13 @@ prompt_data = """
 Write SQL code to join two tables with the following DDL
 ```sql
 CREATE TABLE USER
-....
+<insert DDL here>
 
 CREATE TABLE MORTGAGE
-....
+<insert DDL here>
 """
+
+// Provide .csv extracts for above tables //
 
 bedrock = boto3.client(service_name="bedrock-runtime")
 payload = {
@@ -20,7 +22,7 @@ payload = {
 }
 
 body = json.dumps(payload)
-model_id = "anthropic.claude-v2"
+model_id = "anthropic.claude-v2" // calling foundation model claude-v2 from anthropic //
 response = bedrock.invoke_model(
     body=body,
     modelId=model_id,
