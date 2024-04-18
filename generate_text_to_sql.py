@@ -1,35 +1,25 @@
 import boto3
 import json
 
-prompt_data = """
-Write SQL code to join two tables with the following DDL
-```sql
-CREATE TABLE USER
-<insert DDL here>
-
-CREATE TABLE MORTGAGE
-<insert DDL here>
-"""
-
-// Provide .csv extracts for above tables //
-
-bedrock = boto3.client(service_name="bedrock-runtime")
-payload = {
-    "prompt": f"\n\nHuman:{prompt_data}\n\nAssistant:",
-    "max_tokens_to_sample": 512,
-    "temperature": 0.8,
-    "top_p": 0.8,
-}
-
-body = json.dumps(payload)
-model_id = "anthropic.claude-v2" // calling foundation model claude-v2 from anthropic //
-response = bedrock.invoke_model(
-    body=body,
-    modelId=model_id,
-    accept="application/json",
-    contentType="application/json",
+bedrock = boto3.client(
+    service_name='bedrock-runtime', 
+    region_name='us-west-2'
 )
 
-response_body = json.loads(response.get("body").read())
-response_text = response_body.get("completion")
-print(response_text)
+input = {
+  "modelId": "meta.llama2-13b-chat-v1", // Anthropic Claude v2 FM was used in actual PoC.
+  "contentType": "application/json",
+  "accept": "*/*",
+  "body": "{\"prompt\":\"Write a JOIN SQL query to join two tables namely customer and mortgage, displaying mortgage left to pay in ascending order of the mortgage amount left to pay to the bank.\",\"max_gen_len\":512,\"temperature\":0.5,\"top_p\":0.9}"
+}
+
+# Invoke the model and get back the response
+response = bedrock.invoke_model(body=input["body"],
+                                modelId=input["modelId"],
+                                accept=input["accept"],
+                                contentType=input["contentType"])
+
+response_body = json.loads(response['body'].read())
+
+# Print the response from the model
+print(response_body)
