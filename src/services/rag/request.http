@@ -1,7 +1,7 @@
-POST https://95q4fj3sve.execute-api.us-east-1.amazonaws.com/prod/image
+POST https://6u47qdvq4b.execute-api.us-east-1.amazonaws.com/prod/gdpr
 Content-Type: application/json
 
 {
-    "description": "Cat sitting with a mouse under a tree"
+    "question": "What does GDPR stand for?"
 }
 ###
