@@ -1,7 +1,0 @@
-POST https://95q4fj3sve.execute-api.us-east-1.amazonaws.com/prod/image
-Content-Type: application/json
-
-{
-    "description": "Cat sitting with a mouse under a tree"
-}
-###
