@@ -1,4 +1,4 @@
-This is the implementation for querying knowledge bases containing pdf documents to retrieve text based on user queries.
+This is a RAG-based implementation for querying knowledge bases containing pdf documents to retrieve text based on user queries.
 
 Below is the architecture diagram that illustrates the end to end flow.
 
