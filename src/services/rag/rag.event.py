@@ -1,4 +1,4 @@
-from rag import handler
+from services.rag.rag_model_anthropic_claude_v2 import handler
 import json
 
 event = {

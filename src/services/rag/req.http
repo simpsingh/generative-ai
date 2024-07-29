@@ -1,6 +1,0 @@
-POST https://6u47qdvq4b.execute-api.us-east-1.amazonaws.com/prod/gdpr
-Content-Type: application/json
-
-{
-    "question": "What does GDPR stand for?"
-}
